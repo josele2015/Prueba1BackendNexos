@@ -1,6 +1,6 @@
 package com.credibanco.assessment.card.dto;
 
-public class CrearTarjetaDAO {
+public class RequestCrearTarjetaDAO {
 	private String pan;
 
 	private String titular;
@@ -8,7 +8,7 @@ public class CrearTarjetaDAO {
 	private String tipo;
 	private String telefono;
 	
-	public CrearTarjetaDAO(String pan, String titular, String cedula, String tipo, String telefono) {
+	public RequestCrearTarjetaDAO(String pan, String titular, String cedula, String tipo, String telefono) {
 		super();
 		this.pan = pan;
 		this.titular = titular;

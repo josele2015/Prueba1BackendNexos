@@ -36,7 +36,7 @@ public class Tarjeta implements Serializable{
 	private String tEstado;
 
 	@Column(name = "inumerovalidacion", nullable = false)
-	private int iNumeroValidacion;
+	private int inumerovalidacion;
 
 	@Column(name = "tnumerotarjeta",length=19, nullable = false)
 	private String tnumerotarjeta;
@@ -92,11 +92,11 @@ public class Tarjeta implements Serializable{
 	}
 
 	public int getiNumeroValidacion() {
-		return iNumeroValidacion;
+		return inumerovalidacion;
 	}
 
 	public void setiNumeroValidacion(int iNumeroValidacion) {
-		this.iNumeroValidacion = iNumeroValidacion;
+		this.inumerovalidacion = iNumeroValidacion;
 	}
 
 	public String gettNumeroTarjeta() {

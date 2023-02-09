@@ -1,10 +1,10 @@
 package com.credibanco.assessment.card.dto;
 
-public class EnrolarTarjetaDAO {
+public class RequestTarjetaPANNumeroValidacionDAO {
 	private String PAN;
 	private int NumeroValidacion;
 	
-	public EnrolarTarjetaDAO(String pAN, int numeroValidacion) {
+	public RequestTarjetaPANNumeroValidacionDAO(String pAN, int numeroValidacion) {
 		super();
 		PAN = pAN;
 		NumeroValidacion = numeroValidacion;

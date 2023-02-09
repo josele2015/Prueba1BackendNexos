@@ -1,28 +1,24 @@
 package com.credibanco.assessment.service;
 
 import java.util.List;
-import java.util.stream.Stream;
 
-import javax.transaction.Transactional;
-
-//import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-import com.credibanco.assessment.card.model.Tarjeta;
-//import org.springframework.data.repository.CrudRepository;
-
+//import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
-//@Transactional
-@Repository
-public interface ITarjetaRepo extends JpaRepository<Tarjeta, Long> {
+import com.credibanco.assessment.card.model.Tarjeta;
+public interface ITarjetaRepo extends JpaRepository<Tarjeta, Integer> {
 	
-//	@Query("SELECT t FROM tarjeta t "
-//			+ "WHERE t.tnumerotarjeta = ?1 AND t.tcedula = ?2 "
-//			+ "ORDER BY ASC LIMIT 1")
-//	@Transactional(timeout = 10)
-	@Query(value="SELECT t FROM Tarjeta t "
-			+ "WHERE t.tNumeroTarjeta = ?1", nativeQuery=true)
-	public List<Tarjeta> findEnrolarTarjeta(String tnumerotarjeta);
+	//SQL NATIVE 
+	@Query(value="SELECT * from Tarjeta t "
+			+ "WHERE t.inumerovalidacion = ?1 "
+			+ "AND t.tnumerotarjeta=?2 "
+			+ "ORDER BY t.iidtarjeta ASC LIMIT 1",nativeQuery = true)
+	public Tarjeta BuscarUnaTarjeta(int INumeroValidacion,String tnumerotarjeta);
+//	
+	//JQL recomendable manejar todo en  
+	@Query("SELECT t FROM tarjeta t WHERE t.inumerovalidacion = ?1 ")
+	public List<Tarjeta> findByInumerovalidacion(String iNumeroValidacion);
 	
+	//QueryMethod
+	public List<Tarjeta> findByTnumerotarjeta(String tnumerotarjeta);
 }

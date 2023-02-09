@@ -1,4 +1,4 @@
-package com.credibanco.assessment.card.dto;
+package com.credibanco.assessment.card.api.client;
 
 public class ResponseCrearTarjetaDAO {
 	

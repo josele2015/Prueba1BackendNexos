@@ -45,7 +45,7 @@ public class Transaccion implements Serializable{
 	
 	@Column(name = "tdireccioncompra",length =50, nullable = false)
 	@NotNull
-	private int tDireccionCompra;
+	private String tDireccionCompra;
 	
 	@Column(name = "testadotransaccion",length=100, nullable = false)
 	@NotNull
@@ -87,11 +87,11 @@ public class Transaccion implements Serializable{
 		this.iNumeroReferencia = iNumeroReferencia;
 	}
 
-	public int gettDireccionCompra() {
+	public String gettDireccionCompra() {
 		return tDireccionCompra;
 	}
 
-	public void settDireccionCompra(int tDireccionCompra) {
+	public void settDireccionCompra(String tDireccionCompra) {
 		this.tDireccionCompra = tDireccionCompra;
 	}
 
