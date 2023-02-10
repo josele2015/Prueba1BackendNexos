@@ -6,11 +6,8 @@ public class ResponseAnularTransaccion {
 	private String Mensaje; 
 	private int NumeroReferencia;
 	
-	public ResponseAnularTransaccion(String codigoRespuesta, String mensaje, int numeroReferencia) {
+	public ResponseAnularTransaccion() {
 		super();
-		CodigoRespuesta = codigoRespuesta;
-		Mensaje = mensaje;
-		NumeroReferencia = numeroReferencia;
 	}
 	public String getCodigoRespuesta() {
 		return CodigoRespuesta;

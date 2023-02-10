@@ -1,6 +1,7 @@
 package com.credibanco.assessment.card.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -41,7 +42,7 @@ public class Transaccion implements Serializable{
 	
 	@Column(name = "inumeroreferencia", nullable = false)
 	@NotNull
-	private int iNumeroReferencia;
+	private int inumeroreferencia;
 	
 	@Column(name = "tdireccioncompra",length =50, nullable = false)
 	@NotNull
@@ -53,7 +54,7 @@ public class Transaccion implements Serializable{
 	
 	@Column(name = "dtfechacreacion", nullable = false)
 	@NotNull
-	private int dtFechaCreacion;
+	private Date dtFechaCreacion;
 	
 	@Column(name = "bestado", nullable = false)
 	@NotNull
@@ -79,12 +80,12 @@ public class Transaccion implements Serializable{
 		this.lValorCompra = lValorCompra;
 	}
 
-	public int getiNumeroReferencia() {
-		return iNumeroReferencia;
+	public int getinumeroreferencia() {
+		return inumeroreferencia;
 	}
 
-	public void setiNumeroReferencia(int iNumeroReferencia) {
-		this.iNumeroReferencia = iNumeroReferencia;
+	public void setinumeroreferencia(int inumeroreferencia) {
+		this.inumeroreferencia = inumeroreferencia;
 	}
 
 	public String gettDireccionCompra() {
@@ -103,11 +104,11 @@ public class Transaccion implements Serializable{
 		this.tEstadoTransaccion = tEstadoTransaccion;
 	}
 
-	public int getDtFechaCreacion() {
+	public Date getDtFechaCreacion() {
 		return dtFechaCreacion;
 	}
 
-	public void setDtFechaCreacion(int dtFechaCreacion) {
+	public void setDtFechaCreacion(Date dtFechaCreacion) {
 		this.dtFechaCreacion = dtFechaCreacion;
 	}
 
