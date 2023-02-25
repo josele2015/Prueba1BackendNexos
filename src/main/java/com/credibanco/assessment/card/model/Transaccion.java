@@ -9,18 +9,31 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Index;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+//@Data
+//@AllArgsConstructor
+//@NoArgsConstructor
+//@ToString
 @JsonIgnoreProperties({"hibernateLazyInitializer"})
 @Entity(name = "transaccion")
-//@Table(name = "transaccion", 
-//	indexes = {
-//	    @Index(name = "fk_Transaccion_Tarjeta_idx", columnList = "tarjeta_iIdTarjeta")})
-@Table(name = "transaccion") 
+@Table(name = "transaccion", 
+	indexes = {
+	    @Index(name = "fk_Transaccion_Tarjeta_idx", columnList = "tarjeta_iIdTarjeta")
+	    })
+@Inheritance(strategy = InheritanceType.JOINED)
 public class Transaccion implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -31,15 +44,14 @@ public class Transaccion implements Serializable{
 	private int iIdtransaccion;
 
 //	tarjeta_iIdtarjeta
-	@ManyToOne(fetch= FetchType.LAZY)
+	@ManyToOne(targetEntity = Tarjeta.class,fetch= FetchType.LAZY)
 	@JoinColumn(name="tarjeta_iidtarjeta", nullable=false)
 	@NotNull
-	private Tarjeta tarjeta;
+	private Tarjeta tarjeta_iidtarjeta;
 
 	@Column(name = "lvalorcompra", nullable = false)
 	@NotNull
-	private long lValorCompra;
-	
+	private long lvalorcompra;
 	@Column(name = "inumeroreferencia", nullable = false)
 	@NotNull
 	private int inumeroreferencia;
@@ -72,20 +84,20 @@ public class Transaccion implements Serializable{
 		this.iIdtransaccion = iIdtransaccion;
 	}
 
-	public long getlValorCompra() {
-		return lValorCompra;
-	}
-
-	public void setlValorCompra(long lValorCompra) {
-		this.lValorCompra = lValorCompra;
-	}
-
 	public int getinumeroreferencia() {
 		return inumeroreferencia;
 	}
 
 	public void setinumeroreferencia(int inumeroreferencia) {
 		this.inumeroreferencia = inumeroreferencia;
+	}
+	
+	public long getLvalorcompra() {
+		return lvalorcompra;
+	}
+
+	public void setLvalorcompra(long lvalorcompra) {
+		this.lvalorcompra = lvalorcompra;
 	}
 
 	public String gettDireccionCompra() {
@@ -119,13 +131,21 @@ public class Transaccion implements Serializable{
 	public void setbEstado(boolean bEstado) {
 		this.bEstado = bEstado;
 	}
-	
-	public Tarjeta getTarjeta() {
-		return tarjeta;
+
+	public Tarjeta getTarjeta_iidtarjeta() {
+		return tarjeta_iidtarjeta;
 	}
 
-	public void setTarjeta(Tarjeta tarjeta) {
-		this.tarjeta = tarjeta;
+	public void setTarjeta_iidtarjeta(Tarjeta tarjeta_iidtarjeta) {
+		this.tarjeta_iidtarjeta = tarjeta_iidtarjeta;
 	}
+	public int getInumeroreferencia() {
+		return inumeroreferencia;
+	}
+
+	public void setInumeroreferencia(int inumeroreferencia) {
+		this.inumeroreferencia = inumeroreferencia;
+	}
+	
 
 }

@@ -27,6 +27,14 @@ public class TarjetaServiceImpl implements ITarjetaService {
 	@Override
 	public Tarjeta CrearTarjeta(RequestCrearTarjetaDAO crearTarjetaDAO) {
 		Tarjeta NewTarjeta=new Tarjeta();
+		List<Tarjeta> ListNewTarjeta=new ArrayList();  
+		ListNewTarjeta=iTarjetaRepo.findByTnumerotarjeta(crearTarjetaDAO.getPan());
+		System.out.println(ListNewTarjeta.size());
+		if(ListNewTarjeta.size()>0) {
+			NewTarjeta=ListNewTarjeta.get(0);
+			NewTarjeta.settEstado("No Creada");
+	    	return NewTarjeta;
+		}
     	NewTarjeta.settTitular(crearTarjetaDAO.getTitular());
     	NewTarjeta.settCedula(crearTarjetaDAO.getCedula());
     	NewTarjeta.settTelefono(crearTarjetaDAO.getTelefono());

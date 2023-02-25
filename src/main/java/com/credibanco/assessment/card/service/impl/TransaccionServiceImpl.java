@@ -33,12 +33,11 @@ public class TransaccionServiceImpl implements ITransaccionService{
 		ResponseCrearTransaccion responseCrearTransaccion=new ResponseCrearTransaccion();
 		Transaccion transaccion=new Transaccion();
 		Tarjeta tarjeta=new Tarjeta();
-		
+
 		tarjeta=iTarjetaRepo.findByTnumerotarjeta(requestCrearTransaccionDAO.getPAN()).get(0);
-		transaccion=iTransaccionRepo.findByInumeroreferencia(
-				Integer.parseInt(requestCrearTransaccionDAO.getNumeroReferencia())).get(0);
-		transaccion.setTarjeta(tarjeta);
-		transaccion.setlValorCompra(requestCrearTransaccionDAO.getTotalCompra());
+		
+		transaccion.setTarjeta_iidtarjeta(tarjeta);
+		transaccion.setLvalorcompra(requestCrearTransaccionDAO.getTotalCompra());
 		transaccion.setinumeroreferencia(Integer.parseInt(requestCrearTransaccionDAO.getNumeroReferencia()));
 		transaccion.settDireccionCompra(requestCrearTransaccionDAO.getDireccionCompra());
 		transaccion.settEstadoTransaccion("Aprobada");
@@ -59,14 +58,16 @@ public class TransaccionServiceImpl implements ITransaccionService{
 		ResponseAnularTransaccion responseAnularTransaccion=new ResponseAnularTransaccion();
 		Transaccion transaccion=new Transaccion();
 		Tarjeta tarjeta=new Tarjeta();
-		tarjeta=iTarjetaRepo.findByTnumerotarjeta(requestAnularTransaccionDAO.getPAN()).get(0);
-		transaccion=iTransaccionRepo.findByInumeroreferenciaAndTarjeta(
+		tarjeta        =iTarjetaRepo.findByTnumerotarjeta(requestAnularTransaccionDAO.getPAN()).get(0);
+		transaccion    =iTransaccionRepo.BuscarTransaccion(
 				Integer.parseInt(requestAnularTransaccionDAO.getNumeroReferencia())
-				,Integer.parseInt(requestAnularTransaccionDAO.getPAN())).get(0);
+				,tarjeta.getiIdtarjeta(),requestAnularTransaccionDAO.getTotalCompra()).get(0);
 		
 		responseAnularTransaccion.setCodigoRespuesta("00");
 		responseAnularTransaccion.setMensaje("Compra anulada");
 		responseAnularTransaccion.setNumeroReferencia(transaccion.getinumeroreferencia());
+		transaccion.settEstadoTransaccion("Compra anulada");
+		iTransaccionRepo.save(transaccion);
 		return responseAnularTransaccion;
 	}
 }

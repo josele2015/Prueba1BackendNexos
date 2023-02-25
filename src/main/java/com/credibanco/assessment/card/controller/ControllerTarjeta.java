@@ -23,14 +23,14 @@ import com.credibanco.assessment.card.model.Tarjeta;
 import com.credibanco.assessment.card.service.impl.TarjetaServiceImpl;
 
 @RestController
-@RequestMapping("/tarjeta/v1")  
+@RequestMapping("/tarjeta")  
 public class ControllerTarjeta {
 
 	private TarjetaServiceImpl tarjetaServiceImpl; 
     ControllerTarjeta(TarjetaServiceImpl tarjetaServiceImpl) {
 	    this.tarjetaServiceImpl = tarjetaServiceImpl;
     }
-	@PostMapping("/postCrearTarjeta")
+	@PostMapping("/v2/postCrearTarjeta")
 	public ResponseEntity<Object> CrearTarjeta(@RequestBody RequestCrearTarjetaDAO crearTarjetaDAO) {
 //	public ResponseEntity<Object> CrearTarjeta(@RequestParam("bar") String foo,@RequestParam("bar") String foo2) {
 		MessageStatus messageStatus;
@@ -38,7 +38,6 @@ public class ControllerTarjeta {
 		ResponseCrearTarjetaDAO responseCrearTarjetaDAO=new ResponseCrearTarjetaDAO();
 		try {
 			tarjeta=tarjetaServiceImpl.CrearTarjeta(crearTarjetaDAO);
-			tarjetaServiceImpl.CrearTarjeta(crearTarjetaDAO);
 			responseCrearTarjetaDAO=new ResponseCrearTarjetaDAO();
 			if(tarjeta.gettEstado().equals("Creada")) {
 				responseCrearTarjetaDAO.setCodigoRespuesta("00");
@@ -59,7 +58,7 @@ public class ControllerTarjeta {
 		return new ResponseEntity<Object>(responseCrearTarjetaDAO,HttpStatus.OK);
 	}
 	
-	@PutMapping("/putEnrolarTarjeta")
+	@PutMapping("/v2/putEnrolarTarjeta")
 	public ResponseEntity<Object> EnrolarTarjeta(@RequestBody RequestTarjetaPANNumeroValidacionDAO enrolarTarjetaDAO){
 		MessageStatus messageStatus;
 		ResponseEnrolarTarjetaDAO responseEnrolarTarjetaDAO;
@@ -74,7 +73,7 @@ public class ControllerTarjeta {
 	}
 	
 	
-	@GetMapping("/getConsultarTarjeta")
+	@GetMapping("/v2/getConsultarTarjeta")
 	public ResponseEntity<Object> ConsultarTarjeta(@RequestParam String PAN) {
 		MessageStatus messageStatus;
 		ResponseConsultarTarjetaDAO responseEliminarTarjetaDAO;
@@ -88,7 +87,7 @@ public class ControllerTarjeta {
 		return new ResponseEntity<Object>(responseEliminarTarjetaDAO,HttpStatus.OK);
 	}
 	
-	@DeleteMapping("/deleteEliminarTarjeta")
+	@DeleteMapping("/v2/deleteTarjeta")
 	public ResponseEntity<Object> EliminarTarjeta(@RequestBody RequestTarjetaPANNumeroValidacionDAO EliminarTarjeta) {
 		MessageStatus messageStatus;
 		ResponseEliminarTarjetaDAO responseEliminarTarjetaDAO;

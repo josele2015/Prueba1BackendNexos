@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.stereotype.Repository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
+
 import com.credibanco.assessment.card.model.Tarjeta;
+@Repository
 public interface ITarjetaRepo extends JpaRepository<Tarjeta, Integer> {
 	
 	//SQL NATIVE 

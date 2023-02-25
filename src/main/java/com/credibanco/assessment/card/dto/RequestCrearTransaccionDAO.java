@@ -6,7 +6,8 @@ public class RequestCrearTransaccionDAO {
 	private int TotalCompra;
 	private String DireccionCompra;
 
-	public RequestCrearTransaccionDAO(String pAN, String numeroReferencia, int totalCompra, String direccionCompra) {
+	public RequestCrearTransaccionDAO(String pAN, String numeroReferencia, int totalCompra, 
+			String direccionCompra) {
 		super();
 		PAN = pAN;
 		NumeroReferencia = numeroReferencia;

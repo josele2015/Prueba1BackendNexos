@@ -4,20 +4,17 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.stereotype.Repository;
 
 import com.credibanco.assessment.card.model.Tarjeta;
 import com.credibanco.assessment.card.model.Transaccion;
-
+@Repository
 public interface ITransaccionRepo extends JpaRepository<Transaccion, Integer> {
-//	//QueryMethod	
-//	@Query("SELECT t FROM transaccion t WHERE t.iNumeroReferencia = ?1 "
-//			+ "and t.tarjeta_iidtarjeta = 2?")
-//								   iNumeroReferencia
-//	                         findByInumerovalidacion
 	public List<Transaccion> findByInumeroreferencia(int iNumeroReferencia);
-//	@Query("SELECT t FROM transaccion t WHERE t.iNumeroReferencia = ?1 "
-//			+ "and t.tarjeta_iidtarjeta = 2?")
-	public List<Transaccion> findByInumeroreferenciaAndTarjeta(int iNumeroReferencia,int iidtarjeta);
-//	//QueryMethod
-//	public List<Tarjeta> findByTnumerotarjeta(String tnumerotarjeta);
+	
+	@Query(value="SELECT * from transaccion tr WHERE tr.inumeroreferencia = ?1 "
+			+ "AND tr.tarjeta_iidtarjeta = ?2 AND tr.lvalorcompra=?3 ",nativeQuery = true)		
+	public List<Transaccion> BuscarTransaccion(
+		int iNumeroReferencia,int tarjeta_iidtarjeta,          long lValorCompra);
+	
 }

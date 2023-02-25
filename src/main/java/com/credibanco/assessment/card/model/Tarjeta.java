@@ -2,17 +2,21 @@ package com.credibanco.assessment.card.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+ 
 @Entity(name = "tarjeta")
 @Table(name = "tarjeta")
 
@@ -22,31 +26,36 @@ public class Tarjeta implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "iidtarjeta", nullable = false)	
+	@NotNull
 	private int iIdtarjeta;
-	
 	@Column(name = "ttitular",length = 100, nullable = false)
+	@NotNull
 	private String tTitular;
-	
 	@Column(name = "tcedula",length = 15, nullable = false)
+	@NotNull
 	private String tCedula;
 	@Column(name = "ttelefono",length = 10, nullable = false)
+	@NotNull
 	private String tTelefono;
-	
 	@Column(name = "testado",length = 8, nullable = false)
+	@NotNull
 	private String tEstado;
-
 	@Column(name = "inumerovalidacion", nullable = false)
+	@NotNull
 	private int inumerovalidacion;
-
 	@Column(name = "tnumerotarjeta",length=19, nullable = false)
+	@NotNull
 	private String tnumerotarjeta;
-	
 	@Column(name = "bestado", nullable = false)
+	@NotNull
 	private Boolean bEstado;
-	
 	@Column(name = "dtfechacreacion", nullable = false)
+	@NotNull
 	private Date dtFechacreacion;
 	
+//	@OneToMany(cascade = CascadeType.ALL)
+//	List<Transaccion> transacciones;
+
 	public Tarjeta(){
 		
 	}
@@ -122,4 +131,12 @@ public class Tarjeta implements Serializable{
 	public void setDtFechacreacion(Date dtFechacreacion) {
 		this.dtFechacreacion = dtFechacreacion;
 	}
+	
+//	public List<Transaccion> getTransacciones() {
+//		return transacciones;
+//	}
+//
+//	public void setTransacciones(List<Transaccion> transacciones) {
+//		this.transacciones = transacciones;
+//	}
 }

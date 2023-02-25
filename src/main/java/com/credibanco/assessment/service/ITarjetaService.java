@@ -9,9 +9,7 @@ import com.credibanco.assessment.card.dto.RequestCrearTarjetaDAO;
 import com.credibanco.assessment.card.dto.RequestTarjetaPANNumeroValidacionDAO;
 import com.credibanco.assessment.card.model.Tarjeta;
 
-//import org.springframework.stereotype.Service;
 
-//import com.credibanco.assessment.card.model.Tarjeta;
 
 public interface ITarjetaService {
 	public Tarjeta CrearTarjeta(RequestCrearTarjetaDAO CrearTarjetaDAO);
